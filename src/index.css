@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #F5F5F5;
+  --color-pragraph: #212121;
+
+  --color-cta: #FFC107;
+  --color-primary: #1976D2;
+}
+
+body {
+  font-family: "Markazi Text", Helvetica, Arial, sans-serif;
+  background-color: #F5F5F5;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.hero {
+  min-height: 100vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)), url('./assets/Modern Glass Building.jpg');
+  background-size: cover;
+  background-position: center;
+}
