@@ -1,57 +1,181 @@
-import React, { useState } from "react";
-// import logo from "../assets/01.jpg";
+import React, { useState, useEffect } from "react";
+import logo from "../assets/Landing Page AR.png";
+import {
+    FaHome,
+    FaBriefcase,
+    // FaInfoCircle,
+    FaPhone,
+    FaBars,
+    FaTimes,
+    FaStar,
+    FaUser,
+    FaCommentDots,
+} from "react-icons/fa";
 
 const Header = () => {
-    // get the Nav menu state
     const [isNav, setIsNav] = useState(false);
+    const [activeSection, setActiveSection] = useState("home");
 
-    const handleNav = () => {
-        setIsNav(!isNav);
-    }
+    const handleNav = () => setIsNav(!isNav);
+    const closeMenu = () => setIsNav(false);
 
-    const closeMenu = () => {
-        setIsNav(false)
-    }
+    // 🧠 تحديد السكشن الحالي أثناء التمرير
+    useEffect(() => {
+        const handleScroll = () => {
+            const sections = ["home", "whatWeOffer", "features", "about", "contact", "rate"];
+            let current = "home";
+
+            sections.forEach((id) => {
+                const section = document.getElementById(id);
+                if (section) {
+                    const offsetTop = section.offsetTop - 100;
+                    if (window.scrollY >= offsetTop - 150 && window.scrollY < offsetTop + section.offsetHeight - 150) current = id;
+                }
+            });
+
+            setActiveSection(current);
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+
+    // 📱 تنسيق الروابط للموبايل
+    const linkClassMobile = (id) =>
+        `flex items-center gap-2 transition-all duration-300 ${activeSection === id ? "text-primary py-2 ps-3 rounded-xl bg-sky-200 font-bold" : "text-primary py-2 ps-3"
+        }`;
+
+    const [logoLoaded, setLogoLoaded] = useState(false);
 
     return (
-        <header className="bg-black">
-            <div className="max-w-[1200px] flex justify-between md:block items-center mx-auto px-4 py-3 text-lg">
-                <div className="flex justify-between items-center gap-10">
-                    <a href='/'>
-                        {/* <img className="w-7" src={logo} alt="logo" /> */}
-                        <h1 className='text-primary font-bold text-2xl'>مكان اللوجو</h1>
-                    </a>{/* logo name */}
+        <header className="w-full bg-transperant"> {/* fixed top-0 left-0 shadow-md bg-black/30 backdrop-blur-sm z-10 */}
+            <div className="max-w-[1200px] flex justify-between items-center mx-auto px-4 py-3 text-lg">
+                {/* Logo */}
+                <a href="#home" className="flex items-center gap-2">
+                    {!logoLoaded && (
+                        <h2 className="text-primary font-bold text-2xl">صفحة هبوط</h2>
+                    )}
+                    <img
+                        src={logo}
+                        alt="Logo"
+                        className="h-10 w-auto"
+                        onLoad={() => setLogoLoaded(true)}
+                        style={{ display: logoLoaded ? "block" : "none" }}
+                    />
+                </a>
 
-                    <div className="hidden md:block">
-                        <ul className="flex text-xl font-semibold gap-4">
-                            <li><a className="text-white hover:text-primary" href="/#">الرئيسية</a></li>
-                            <li><a className="text-white hover:text-primary" href="/#services">الخدمات</a></li>
-                            <li><a className="text-white hover:text-primary" href="/#about">من نحن</a></li>
-                            <li><a className="text-white hover:text-primary" href="/#contactUs">تواصل معنا</a></li>
-                        </ul>{/* PC_List */}
-                    </div>
+
+                {/* Desktop Nav */}
+                <ul className="hidden md:flex text-xl font-semibold gap-6">
+                    <li>
+                        <a href="#home" className="text-white hover:text-primary transition-all duration-300 ">
+                            الرئيسية
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#whatWeOffer" className="text-white hover:text-primary transition-all duration-300 ">
+                            الخدمات
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#features" className="text-white hover:text-primary transition-all duration-300 ">
+                            المميزات
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#contact" className="text-white hover:text-primary transition-all duration-300 ">
+                            تواصل معنا
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#about" className="text-white hover:text-primary transition-all duration-300 ">
+                            لمحه عني
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#rate" className="text-white hover:text-primary transition-all duration-300 ">
+                            آراء العملاء
+                        </a>
+                    </li>
+                </ul>
+
+                {/* Mobile Icon */}
+                <div
+                    onClick={handleNav}
+                    className="block md:hidden text-3xl text-white cursor-pointer"
+                >
+                    {isNav ? <FaTimes /> : <FaBars />}
                 </div>
 
-                <div onClick={handleNav} className="block text-2xl text-white md:hidden">
-                    {isNav ? 'X' : '☰'}
-                </div>{/* openCloseMenu */}
-
+                {/* Backdrop */}
                 {isNav && (
-                    <div onClick={handleNav} className='fixed inset-0 w-full h-screen backdrop-blur-md bg-black/30 transition-all duration-500 ease-in-out z-40'></div>
-                )}{/* backdrop */}
+                    <div
+                        onClick={closeMenu}
+                        className="fixed inset-0 w-full h-screen bg-black/50 backdrop-blur-sm z-40"
+                    ></div>
+                )}
 
-                <ul onClick={(e) => e.stopPropagation()}
-                    className={`fixed top-10 right-1/3 -translate-x-1 w-6/12 text-xl font-semibold z-50 bg-background rounded-2xl flex flex-col items-start p-6 transition-all duration-500 ease-in-out
-          ${isNav ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 -translate-y-4 pointer-events-none"}`}>
-                    <h2 className="text-primary text-3xl font-bold mb-2">روابط سريعة</h2>
-                    <li className="text-pragraph"><a onClick={closeMenu} href="/#">الرئيسية</a></li>
-                    <li className="text-pragraph"><a onClick={closeMenu} href="/#services">الخدمات</a></li>
-                    <li className="text-pragraph"><a onClick={closeMenu} href="/#about">من نحن</a></li>
-                    <li className="text-pragraph"><a onClick={closeMenu} href="/#contactUs">تواصل معنا</a></li>
-                </ul>{/* mopileList */}
+                {/* Mobile Menu */}
+                <div
+                    className={`fixed top-0 right-0 w-8/12 max-w-[300px] h-screen bg-background shadow-2xl p-4 z-50 transform transition-transform duration-500 ease-in-out
+            ${isNav ? "translate-x-0" : "translate-x-full"}`}
+                >
+                    <a href="#home" className="flex items-center gap-2">
+                        {!logoLoaded && (
+                            <h2 className="text-primary text-2xl font-bold mb-6 ps-2">صفحة هبوط</h2>
+                        )}
+                        <img
+                            src={logo}
+                            alt="Logo"
+                            className="h-10 w-auto mb-6 ps-2"
+                            onLoad={() => setLogoLoaded(true)}
+                            style={{ display: logoLoaded ? "block" : "none" }}
+                        />
+                    </a>
+
+                    <ul className="flex flex-col gap-3 text-lg font-semibold">
+                        <li>
+                            <a href="#home" className={linkClassMobile("home")} onClick={closeMenu}>
+                                <FaHome className="text-lg" />
+                                الرئيسية
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#whatWeOffer" className={linkClassMobile("whatWeOffer")} onClick={closeMenu}>
+                                <FaBriefcase className="text-lg" />
+                                الخدمات
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#features" className={linkClassMobile("features")} onClick={closeMenu}>
+                                <FaStar className="text-lg" />
+                                المميزات
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#contact" className={linkClassMobile("contact")} onClick={closeMenu}>
+                                <FaPhone className="text-lg" />
+                                تواصل معنا
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#about" className={linkClassMobile("about")} onClick={closeMenu}>
+                                <FaUser className="text-lg" />
+                                لمحه عني
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#rate" className={linkClassMobile("rate")} onClick={closeMenu}>
+                                <FaCommentDots className="text-lg" />
+                                آراء العملاء
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </header>
-    )
-}
+    );
+};
 
-export default Header
+export default Header;

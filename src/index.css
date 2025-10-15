@@ -1,16 +1,16 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #F5F5F5;
-  --color-pragraph: #212121;
-
-  --color-cta: #FFC107;
-  --color-primary: #1976D2;
+  --color-background: #DFF2FE;
+  --color-secBackground: #F5F6F8;
+  --color-pragraph: #4A5565;
+  --color-cta: #0F5C71;
+  --color-primary: #00BCFF;
 }
 
 body {
   font-family: "Markazi Text", Helvetica, Arial, sans-serif;
-  background-color: #F5F5F5;
+  background-color: #fff;
 }
 
 html {
@@ -19,7 +19,33 @@ html {
 
 .hero {
   min-height: 100vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)), url('./assets/Modern Glass Building.jpg');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)), url('./assets/bg_hero.png');
   background-size: cover;
   background-position: center;
+}
+
+.contactUs {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)), url('./assets/bg_hero.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.slider-wrapper {
+  overflow: hidden;
+  direction: rtl; /* مهم علشان RTL */
+}
+
+.slider-track {
+  display: flex;
+  width: fit-content;
+  animation: scroll-rtl 60s linear infinite;
+}
+
+@keyframes scroll-rtl {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(50%);
+  }
 }
