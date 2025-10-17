@@ -2,11 +2,12 @@
 
 @theme {
   --color-background: #DFF2FE;
-  --color-secBackground: #F5F6F8;
   --color-pragraph: #4A5565;
   --color-cta: #0F5C71;
   --color-primary: #00BCFF;
 }
+
+/* --color-secBackground: #F5F6F8; */
 
 body {
   font-family: "Markazi Text", Helvetica, Arial, sans-serif;

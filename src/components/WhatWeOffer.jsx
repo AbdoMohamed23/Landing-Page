@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import dashboard from '../assets/Minimalist Dashboard Illustration.png'
-import seoAnalytics from '../assets/Minimalist SEO Analytics Dashboard Illustration on White Background.png'
-import { FaGlobe, FaMobileAlt, FaLanguage, FaSearch, FaMoneyBillWave } from 'react-icons/fa'
-import { MdAttachMoney, MdOutlineRocketLaunch } from 'react-icons/md'
-import { FaMoneyBill1Wave } from 'react-icons/fa6'
+import dashboard from '../assets/Dashboard.png'
+import seoAnalytics from '../assets/SEO Analytics.png'
+import { FaGlobe, FaMobileAlt, FaLanguage, FaSearch } from 'react-icons/fa'
+import { MdOutlineRocketLaunch } from 'react-icons/md'
 import { GrMoney } from 'react-icons/gr'
 
 const WhatWeOffer = () => {

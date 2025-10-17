@@ -14,7 +14,6 @@ const Hero = () => {
                         <a href="https://wa.me/+201149270139" target="blank" className='inline-block rounded-xl border border-white bg-transparent px-6 py-2 font-bold text-white hover:bg-primary hover:border-primary shadow-md hover:shadow-lg transition-all duration-300 ease-in-out hover:scale-[1.03]'>                        <span className='flex items-center justify-center gap-2'>
                             <GoCheckCircle />اطلب استشارة الآن
                         </span></a>
-                        {/* <a href="#" className='bg-transparent text-xl rounded-2xl border border-cta px-6 py-1 font-medium text-cta hover:bg-cta hover:text-white transition-transform duration-300 hover:scale-[1.04]'>أزرار _ CTA</a> */}
                         <p></p>
                     </div>
                 </div>

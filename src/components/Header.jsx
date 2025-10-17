@@ -3,7 +3,6 @@ import logo from "../assets/Landing Page AR.png";
 import {
     FaHome,
     FaBriefcase,
-    // FaInfoCircle,
     FaPhone,
     FaBars,
     FaTimes,
@@ -49,7 +48,7 @@ const Header = () => {
     const [logoLoaded, setLogoLoaded] = useState(false);
 
     return (
-        <header className="w-full bg-transperant"> {/* fixed top-0 left-0 shadow-md bg-black/30 backdrop-blur-sm z-10 */}
+        <header className="w-full bg-transperant">
             <div className="max-w-[1200px] flex justify-between items-center mx-auto px-4 py-3 text-lg">
                 {/* Logo */}
                 <a href="#home" className="flex items-center gap-2">

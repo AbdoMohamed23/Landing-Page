@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { FaPhoneAlt, FaRegCommentDots, FaUser } from 'react-icons/fa';
 import { GoCheckCircle } from 'react-icons/go';
 import { MdEmail } from 'react-icons/md';
 
 const ContactUs = () => {
+    const nameRef = useRef(null);
+    const emailRef = useRef(null);
+    const phoneRef = useRef(null);
+    const messageRef = useRef(null);
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -34,8 +39,9 @@ const ContactUs = () => {
                     <div className='grid grid-cols-2 gap-3'>
                         {/* Name */}
                         <div className="relative col-span-1">
-                            <FaUser className="absolute right-3 top-3 text-gray-400 text-lg" />
+                            <FaUser className="absolute right-3 top-3 text-gray-400 text-lg" onClick={() => nameRef.current?.focus()} />
                             <input
+                                ref={nameRef}
                                 type="text"
                                 name="name"
                                 required
@@ -46,8 +52,9 @@ const ContactUs = () => {
 
                         {/* Email */}
                         <div className="relative col-span-1">
-                            <MdEmail className="absolute right-3 top-3 text-gray-400 text-lg" />
+                            <MdEmail className="absolute right-3 top-3 text-gray-400 text-lg" onClick={() => emailRef.current?.focus()} />
                             <input
+                                ref={emailRef}
                                 type="email"
                                 name="email"
                                 placeholder="بريد إلكتروني"
@@ -57,8 +64,9 @@ const ContactUs = () => {
 
                         {/* Phone */}
                         <div className="relative col-span-2">
-                            <FaPhoneAlt className="absolute right-3 top-3 text-gray-400 text-lg" />
+                            <FaPhoneAlt className="absolute right-3 top-3 text-gray-400 text-lg" onClick={() => phoneRef.current?.focus()} />
                             <input
+                                ref={phoneRef}
                                 type="tel"
                                 dir='rtl'
                                 name="phone"
@@ -70,8 +78,9 @@ const ContactUs = () => {
 
                         {/* Message */}
                         <div className="relative col-span-2">
-                            <FaRegCommentDots className="absolute right-3 top-3 text-gray-400 text-lg" />
+                            <FaRegCommentDots className="absolute right-3 top-3 text-gray-400 text-lg" onClick={() => messageRef.current?.focus()} />
                             <textarea
+                                ref={messageRef}
                                 rows={3}
                                 name="message"
                                 required

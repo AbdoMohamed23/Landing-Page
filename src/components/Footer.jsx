@@ -33,10 +33,6 @@ const Footer = () => {
               <GoCheckCircle className='text-primary text-2xl flex-shrink-0' />
               تحسين تجربة المستخدم لزيادة التفاعل والتحويلات.
             </li>
-            {/* <li className='flex items-center gap-3'>
-              <GoCheckCircle className='text-primary text-2xl flex-shrink-0' />
-              دعم فني مستمر لضمان أداء موقعك بأفضل شكل.
-            </li> */}
           </ul>
         </div>
 
